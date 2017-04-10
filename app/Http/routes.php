@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'RecordController@index');
+
+Route::get('/list/{id}/{date}', 'RecordController@getList');

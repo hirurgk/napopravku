@@ -68,7 +68,7 @@
 		      if (year == thisyear && month == thismonth)
 			    var oldDay = (j-firstDay+1) - thisday < 0 ? 'old-day' : '';
 			  
-			  var strDate = year + '-' + month + '-' + (j-firstDay+1);
+			  var strDate = year + '-' + (month+1) + '-' + (j-firstDay+1);
 			  
               if ((j<firstDay)){
                 table += ('<td data-date="'+strDate+'" class="other-month '+oldDay+'"><span class="day">'+ (prev_days-firstDay+j+1) +'</span></td>');

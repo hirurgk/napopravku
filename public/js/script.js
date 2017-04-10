@@ -66,6 +66,8 @@ Calendar = {
 			$(this).addClass('bg-success');
 			
 			$this.selectedDate = $(this).data('date');
+			
+			Record.getTime(Doctor.selectedId, $this.selectedDate);
 		});
 	},
 }
@@ -87,7 +89,28 @@ Doctor = {
 			$(this).addClass('bg-success');
 			
 			$this.selectedId = $(this).data('id');
+			
+			Record.getTime($this.selectedId, Calendar.selectedDate);
 		});
+	},
+}
+
+
+Record = {
+	//Получение времени на запись
+	getTime: function(id, date){
+		if (id > 0 && date != '0000-00-00')
+		{
+			$.ajax({
+				url: '/list/' + id + '/' + date,
+				method: 'GET',
+				success: function(response){
+					$("#records").fadeOut(200, function(){
+						$("#records").html(response).fadeIn(200);
+					})
+				}
+			});
+		}
 	},
 }
 //# sourceMappingURL=script.js.map

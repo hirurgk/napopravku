@@ -17,7 +17,6 @@
 						@endforeach
 					@endforeach
 				</tbody>
-				
 			</table>
 		</div>
 		
@@ -31,6 +30,8 @@
 				<a href="javascript: void(0)" onClick="Calendar.nextMonth()">Следующий месяц →</a>
 			</div>
 		</div>
+		
+		<div id="records" class="col-sm-12"></div>
 	</div>
 
 @endsection
