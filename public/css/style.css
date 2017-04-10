@@ -1,4 +1,4 @@
-.table-pointer tbody tr {
+.table-pointer tr {
   cursor: pointer; }
 
 #table-calendar td:hover:not(.old-day) {

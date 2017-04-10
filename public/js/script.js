@@ -1,23 +1,19 @@
 $(function(){
+	Doctor.init();
 	Calendar.init();
 });
 
 
 Calendar = {
 	now: new Date(),
+	selectedDate: '0000-00-00',
 	
 	init: function() {
 		var $this = this;
 		
 		$("#calendar").calendarWidget();
 		
-		$("#linkPrevMonth").click(function(){
-			$this.prevMonth();
-		});
-		
-		$("#linkNextMonth").click(function(){
-			$this.nextMonth();
-		});
+		this.selectDay();
 	},
 	
 	//Следующий месяц
@@ -59,6 +55,39 @@ Calendar = {
 			
 			$("#calendar").fadeIn(200);
 		});
-	}
+	},
+	
+	//Выбор дня
+	selectDay: function(){
+		var $this = this;
+		
+		$("body").on("click", "#calendar td:not(.old-day)", function(){
+			$("#calendar td").removeClass('bg-success');
+			$(this).addClass('bg-success');
+			
+			$this.selectedDate = $(this).data('date');
+		});
+	},
+}
+
+
+Doctor = {
+	selectedId: 0,
+	
+	init: function(){
+		this.selectDoctor();
+	},
+	
+	//Выбор врача
+	selectDoctor: function(){
+		var $this = this;
+		
+		$(".table-doctors tr").click(function(){
+			$(".table-doctors tr").removeClass('bg-success');
+			$(this).addClass('bg-success');
+			
+			$this.selectedId = $(this).data('id');
+		});
+	},
 }
 //# sourceMappingURL=script.js.map
