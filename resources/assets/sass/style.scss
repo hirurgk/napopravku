@@ -1,3 +1,19 @@
 .table-pointer tbody tr {
 	cursor: pointer;
 }
+
+#table-calendar {
+	td:hover:not(.old-day) {
+		cursor: pointer;
+		background: #f5f5f5;
+	}
+	
+	.old-day {
+		background: #fee;
+		cursor: no-drop;
+	}
+	
+	.other-month {
+		color: #aaa;
+	}
+}

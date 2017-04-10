@@ -14,4 +14,7 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix.less('app.less');
 	mix.sass('style.scss');
+	
+	mix.scripts(['script.js'], 'public/js/script.js')
+	mix.scripts(['jquery-plugins/jquery.calendar-widget.js'], 'public/js/jquery-plugins.js')
 });
