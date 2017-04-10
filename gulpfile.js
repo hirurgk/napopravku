@@ -17,4 +17,5 @@ elixir(function(mix) {
 	
 	mix.scripts(['script.js'], 'public/js/script.js')
 	mix.scripts(['jquery-plugins/jquery.calendar-widget.js'], 'public/js/jquery-plugins.js')
+	mix.scripts(['bootstrap.js'], 'public/js/bootstrap.js')
 });

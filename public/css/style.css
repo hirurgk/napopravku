@@ -23,4 +23,7 @@ body {
   #table-records tr.bg-danger {
     cursor: no-drop; }
 
+.record-modal .modal-content {
+  padding: 0 15px 15px 15px; }
+
 /*# sourceMappingURL=style.css.map */

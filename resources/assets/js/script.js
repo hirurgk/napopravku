@@ -1,6 +1,7 @@
 ﻿$(function(){
 	Doctor.init();
 	Calendar.init();
+	Record.init();
 });
 
 
@@ -58,7 +59,7 @@ Calendar = {
 	},
 	
 	//Выбор дня
-	selectDay: function(){
+	selectDay: function() {
 		var $this = this;
 		
 		$("body").on("click", "#calendar td:not(.old-day)", function(){
@@ -76,12 +77,12 @@ Calendar = {
 Doctor = {
 	selectedId: 0,
 	
-	init: function(){
+	init: function() {
 		this.selectDoctor();
 	},
 	
 	//Выбор врача
-	selectDoctor: function(){
+	selectDoctor: function() {
 		var $this = this;
 		
 		$(".table-doctors tr").click(function(){
@@ -97,8 +98,12 @@ Doctor = {
 
 
 Record = {
+	init: function() {
+		this.openModal();
+	},
+	
 	//Получение времени на запись
-	getTime: function(id, date){
+	getTime: function(id, date) {
 		if (id > 0 && date != '0000-00-00')
 		{
 			$.ajax({
@@ -111,5 +116,13 @@ Record = {
 				}
 			});
 		}
+	},
+	
+	//Открытие модального окна с формой для записи
+	openModal: function() {
+		$("body").on("click", "#table-records tr:not(.bg-danger)", function(){
+			var time = $(this).find('td:first-child').html();
+			$(".record-modal #user-time").val(time);
+		});
 	},
 }
