@@ -16,6 +16,6 @@ elixir(function(mix) {
 	mix.sass('style.scss');
 	
 	mix.scripts(['init.js', 'Doctor.js', 'Calendar.js', 'Record.js'], 'public/js/script.js')
-	mix.scripts(['jquery-plugins/jquery.calendar-widget.js'], 'public/js/jquery-plugins.js')
+	mix.scripts(['jquery-plugins/jquery.calendar-widget.js', 'jquery-plugins/jquery.inputmask.js'], 'public/js/jquery-plugins.js')
 	mix.scripts(['bootstrap.js'], 'public/js/bootstrap.js')
 });

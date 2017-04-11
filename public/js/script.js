@@ -135,6 +135,9 @@ Record = {
 			
 			var time = $(this).find('td:first-child').html();
 			$(".record-modal #user-time").val(time);
+			
+			//Маска ввода телефона
+			$("#user-phone").inputmask("+7(999)999-99-99");
 		});
 	},
 	
