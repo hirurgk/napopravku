@@ -41,7 +41,7 @@ class RecordController extends Controller {
 	 */
 	public function getList(Request $request)
 	{
-		$records = Cache::remember("doctor_{$request->id}_{$request->date}", self::REMEMBER, function() use ($request) {
+		$records = Cache::remember("record_{$request->id}_{$request->date}", self::REMEMBER, function() use ($request) {
 			return Doctor::find($request->id)->records()
 					->where("time_of_reception", ">", "{$request->date} 00:00:00")
 					->where("time_of_reception", "<", "{$request->date} 23:59:59")
@@ -89,6 +89,11 @@ class RecordController extends Controller {
 		$record->confirmed = true;
 		$record->time_of_reception = $request->time_of_reception;
 		$record->save();
+		
+		//Удалим из кеша запись
+		$arDate = explode(" ", $request->time_of_reception);
+		$strDate = $arDate[0];
+		Cache::forget("record_{$request->doctor_id}_{$strDate}");
 	}
 
 }
