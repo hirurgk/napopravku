@@ -3,8 +3,27 @@ $(function(){
 	Calendar.init();
 	Record.init();
 });
-
-
+Doctor = {
+	selectedId: 0,
+	
+	init: function() {
+		this.selectDoctor();
+	},
+	
+	//Выбор врача
+	selectDoctor: function() {
+		var $this = this;
+		
+		$(".table-doctors tr").click(function(){
+			$(".table-doctors tr").removeClass('bg-success');
+			$(this).addClass('bg-success');
+			
+			$this.selectedId = $(this).data('id');
+			
+			Record.getTime($this.selectedId, Calendar.selectedDate);
+		});
+	},
+}
 Calendar = {
 	now: new Date(),
 	selectedDate: '0000-00-00',
@@ -72,31 +91,6 @@ Calendar = {
 		});
 	},
 }
-
-
-Doctor = {
-	selectedId: 0,
-	
-	init: function() {
-		this.selectDoctor();
-	},
-	
-	//Выбор врача
-	selectDoctor: function() {
-		var $this = this;
-		
-		$(".table-doctors tr").click(function(){
-			$(".table-doctors tr").removeClass('bg-success');
-			$(this).addClass('bg-success');
-			
-			$this.selectedId = $(this).data('id');
-			
-			Record.getTime($this.selectedId, Calendar.selectedDate);
-		});
-	},
-}
-
-
 Record = {
 	init: function() {
 		this.initModal();
