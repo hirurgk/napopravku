@@ -15,6 +15,9 @@
 	</head>
 
 	<body>
-		@yield('content')
+		<section class="container">
+			<h1>Запись к врачу</h1>
+			@yield('content')
+		</section>
 	</body>
 </html>

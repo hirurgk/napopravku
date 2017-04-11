@@ -2,7 +2,6 @@
 
 @section('content')
 
-	<div class="container">
 		<div class="col-sm-6">
 			<h3>Выберите врача</h3>
 			
@@ -32,9 +31,5 @@
 		</div>
 		
 		<div id="records" class="col-sm-12"></div>
-		
-
-		
-	</div>
 
 @endsection
