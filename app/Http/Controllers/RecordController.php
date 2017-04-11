@@ -41,7 +41,7 @@ class RecordController extends Controller {
 	 */
 	public function getList(Request $request)
 	{
-		$records = Cache::remember('doctor'.$request->id, self::REMEMBER, function() use ($request) {
+		$records = Cache::remember("doctor_{$request->id}_{$request->date}", self::REMEMBER, function() use ($request) {
 			return Doctor::find($request->id)->records()
 					->where("time_of_reception", ">", "{$request->date} 00:00:00")
 					->where("time_of_reception", "<", "{$request->date} 23:59:59")
