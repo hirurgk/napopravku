@@ -30,4 +30,9 @@ body {
   display: none;
   padding: 7px 30px; }
 
+.record-modal .record-success {
+  display: none; }
+  .record-modal .record-success .alert-success {
+    margin-top: 20px; }
+
 /*# sourceMappingURL=style.css.map */

@@ -46,4 +46,12 @@ body {
 		display: none;
 		padding: 7px 30px;
 	}
+	
+	.record-success {
+		display: none;
+		
+		.alert-success {
+			margin-top: 20px;
+		}
+	}
 }

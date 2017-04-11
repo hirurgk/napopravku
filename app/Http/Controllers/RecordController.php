@@ -42,7 +42,7 @@ class RecordController extends Controller {
 		foreach ($records as &$record)
 		{
 			$record['hour'] = date('H', strtotime($record['time_of_reception']));
-			$formatRecords[$record['hour']] = $record;
+			$formatRecords[(int) $record['hour']] = $record;
 		}
 		
 		return view('records.list', [
@@ -62,11 +62,22 @@ class RecordController extends Controller {
 			[
 				'name' => 'required|max:255',
 				'phone' => 'required',
+				'doctor_id' => 'required|numeric',
+				'time_of_reception' => 'required|date',
 			],
 			[
 				'required' => 'Необходимо указать :attribute.',
 			]
 		);
+		
+		//Добавляем запись
+		$record = new Record();
+		$record->doctor_id = $request->doctor_id;
+		$record->name = $request->name;
+		$record->phone = $request->phone;
+		$record->confirmed = true;
+		$record->time_of_reception = $request->time_of_reception;
+		$record->save();
 	}
 
 }
