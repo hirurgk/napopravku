@@ -26,4 +26,8 @@ body {
 .record-modal .modal-content {
   padding: 0 15px 15px 15px; }
 
+.record-modal .record-errors {
+  display: none;
+  padding: 7px 30px; }
+
 /*# sourceMappingURL=style.css.map */

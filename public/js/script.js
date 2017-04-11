@@ -99,7 +99,8 @@ Doctor = {
 
 Record = {
 	init: function() {
-		this.openModal();
+		this.initModal();
+		this.initSend();
 	},
 	
 	//Получение времени на запись
@@ -119,11 +120,57 @@ Record = {
 	},
 	
 	//Открытие модального окна с формой для записи
-	openModal: function() {
+	initModal: function() {
+		var $this = this;
+		
 		$("body").on("click", "#table-records tr:not(.bg-danger)", function(){
+			$this.hideErrors();
+			
 			var time = $(this).find('td:first-child').html();
 			$(".record-modal #user-time").val(time);
 		});
+	},
+	
+	//Запись
+	initSend: function() {
+		var $this = this;
+		
+		$("body").on("submit", ".record-modal form", function(){
+			var data = $(this).serialize();
+			
+			$this.hideErrors();
+			
+			$.ajax({
+				url: '/store',
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+				},
+				data: data,
+				method: "POST",
+				dataType: 'json',
+				complete: function(response) {
+					var json = response.responseJSON;
+					
+					if (response.statusText != "OK") {
+						//Выводим сообщения об ошибке
+						for (i in json) {
+							$(".record-modal .record-errors").append("<li>" + json[i] + "</li>");
+						}
+						
+						$(".record-modal .record-errors").fadeIn(200);
+					} else {
+						//Успех
+					}
+				},
+			});
+			
+			return false;
+		});
+	},
+	
+	//Прячем сообщения об ошибках
+	hideErrors: function() {
+		$(".record-modal .record-errors").html("").hide();
 	},
 }
 //# sourceMappingURL=script.js.map

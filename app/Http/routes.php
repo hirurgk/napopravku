@@ -14,3 +14,5 @@
 Route::get('/', 'RecordController@index');
 
 Route::get('/list/{id}/{date}', 'RecordController@getList');
+
+Route::post('/store', 'RecordController@store');

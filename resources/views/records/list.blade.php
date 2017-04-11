@@ -15,6 +15,8 @@
 		<div class="modal-content">
 			<h3>Запись к врачу</h3>
 			
+			<ul class="record-errors alert alert-danger"></ul>
+			
 			<form action="{{ url('/store') }}" method="POST" class="form-horizontal">
 				<div class="form-group">
 					<label for="user-name" class="col-sm-3 control-label">Ваше имя</label>

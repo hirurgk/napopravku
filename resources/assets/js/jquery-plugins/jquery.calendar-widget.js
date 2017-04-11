@@ -66,7 +66,7 @@
 			var i = 0;
             for (j=0;j<42;j++){
 		      if (year == thisyear && month == thismonth)
-			    var oldDay = (j-firstDay+1) - thisday < 0 ? 'old-day' : '';
+			    var oldDay = (j-firstDay) - thisday < 0 ? 'old-day' : '';
 			  
 			  var strDate = year + '-' + (month+1) + '-' + (j-firstDay+1);
 			  

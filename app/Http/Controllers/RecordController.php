@@ -51,13 +51,22 @@ class RecordController extends Controller {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Запись пациента к врачу
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$this->validate(
+			$request,
+			[
+				'name' => 'required|max:255',
+				'phone' => 'required',
+			],
+			[
+				'required' => 'Необходимо указать :attribute.',
+			]
+		);
 	}
 
 }
