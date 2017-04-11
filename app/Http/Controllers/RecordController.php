@@ -7,10 +7,17 @@ use \App\Profession,
 	\App\Doctor,
 	\App\Record;
 
+use Cache;
+
 use Illuminate\Http\Request;
 
 class RecordController extends Controller {
 
+	/**
+	 * Время в минутах для кеширования запросов из базы
+	 */
+	const REMEMBER = 5;
+	
 	/**
 	 * Отображает врачей, календарь и записи на приём
 	 *
@@ -18,7 +25,9 @@ class RecordController extends Controller {
 	 */
 	public function index()
 	{
-		$professions = Profession::with('doctors')->orderBy('name', 'asc')->get();
+		$professions = Cache::remember('doctors', self::REMEMBER, function() {
+			return Profession::with('doctors')->orderBy('name', 'asc')->get();
+		});
 		
 		return view('records.records', [
 			'professions' => $professions
@@ -32,10 +41,12 @@ class RecordController extends Controller {
 	 */
 	public function getList(Request $request)
 	{
-		$records = Doctor::find($request->id)->records()
-			->where("time_of_reception", ">", "{$request->date} 00:00:00")
-			->where("time_of_reception", "<", "{$request->date} 23:59:59")
-			->get();
+		$records = Cache::remember('doctor'.$request->id, self::REMEMBER, function() use ($request) {
+			return Doctor::find($request->id)->records()
+					->where("time_of_reception", ">", "{$request->date} 00:00:00")
+					->where("time_of_reception", "<", "{$request->date} 23:59:59")
+					->get();
+		});
 		
 		//Пересоберём записи с ключами-часами
 		$formatRecords = [];
